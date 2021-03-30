@@ -12,22 +12,12 @@ struct HomeView: View {
     @EnvironmentObject var modelData: ModelData
     @State private var showingProfile = false
     
-//    var profileButton: some View {
-//        Button(action: {
-//            self.showingProfile.toggle()
-//        }) {
-//            Image(systemName: "person.crop.circle")
-//                .imageScale(.large)
-//                .accessibility(label: Text("User Profile"))
-//                .padding()
-//        }
-//    }
-    
     var body: some View {
         NavigationView {
             List {
                 PageView(pages: modelData.features.map { FeatureCard(landmark: $0) })
                     .aspectRatio(3 / 2, contentMode: .fit)
+                    .listRowInsets(EdgeInsets())
                 
                 ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
                     HomeRow(categoryName: key, items: modelData.categories[key]!)
