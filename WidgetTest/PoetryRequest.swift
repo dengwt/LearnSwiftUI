@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct PoetryRequest {
     static func request(completion: @escaping (Result<Poetry, Error>) -> Void) {
@@ -25,12 +26,17 @@ struct PoetryRequest {
     static func convertJsonToPoetry(data: Data) -> Poetry {
         let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
         guard let data = json["data"] as? [String: Any] else {
-            return Poetry(content: "request failed", origin: "", author: "")
+            return Poetry(content: "request failed", origin: "", author: "", icon: UIImage(named: "hiddenlake"))
         }
         let content = data["content"] as! String
         let origin = data["origin"] as! String
         let author = data["author"] as! String
         
-        return Poetry(content: content, origin: origin, author: author)
+        var image: UIImage? = nil
+        if let imageData = try? Data(contentsOf: URL(string: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1058052610,2039041423&fm=26&gp=0.jpg")!) {
+            image = UIImage(data: imageData)
+        }
+        
+        return Poetry(content: content, origin: origin, author: author, icon: image)
     }
 }

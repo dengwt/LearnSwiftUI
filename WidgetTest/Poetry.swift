@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Poetry {
     let content: String
     let origin: String
     let author: String
+    let icon: UIImage?
 }
+
