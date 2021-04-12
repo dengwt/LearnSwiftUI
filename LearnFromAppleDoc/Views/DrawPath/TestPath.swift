@@ -38,6 +38,7 @@ struct TestPath: View {
             // draw sword
             Path { path in
                 path.move(to:CGPoint(x:180,y:40))
+                path.addArc(center: CGPoint(x: 150, y: 33), radius: 15, startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 270), clockwise: false)
                 path.addLine(to: CGPoint(x: 240, y:20))
                 path.addLine(to: CGPoint(x:260,y:40))
                 path.addLine(to: CGPoint(x:225,y:40))
